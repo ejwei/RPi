@@ -3,7 +3,7 @@ import time
 import serial
 
 # Setup Serial
-port = serial.Serial("/dev/ttyAMA0", baudrate = 115200, timeout = 0)
+port = serial.Serial("/dev/ttyAMA0", baudrate = 115200)
 
 #set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
@@ -64,3 +64,5 @@ while True:
 		rcv = port.readline()
 		print(rcv)
 		break
+
+port.close()
