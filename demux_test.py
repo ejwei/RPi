@@ -36,6 +36,7 @@ GPIO.output(A1, False)
 GPIO.output(A2, False)
 
 while True:
+	print(port.inWaiting())
 	if(port.inWaiting() > 0):
 		rcv = port.readline()
 		print(rcv)
