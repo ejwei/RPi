@@ -31,7 +31,7 @@ GPIO.output(A0, False)
 GPIO.output(A1, False)
 GPIO.output(A2, False)
 
-while True
+while True:
 	if(serial.inWaiting() > 0):
 		rcv = port.readline()
 		print(rcv)
@@ -43,7 +43,7 @@ GPIO.output(A0, True)
 GPIO.output(A1, False)
 GPIO.output(A2, False)
 
-while True
+while True:
 	if(serial.inWaiting() > 0):
 		rcv = port.readline()
 		print(rcv)
@@ -55,7 +55,7 @@ GPIO.output(A0, True)
 GPIO.output(A1, True)
 GPIO.output(A2, False)
 
-while True
+while True:
 	if(serial.inWaiting() > 0):
 		rcv = port.readline()
 		print(rcv)
