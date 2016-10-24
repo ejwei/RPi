@@ -21,13 +21,15 @@ A0 = 17
 A1 = 27
 A2 = 22
 
+GPIO.setup(A0, GPIO.OUT)
+GPIO.setup(A1, GPIO.OUT)
+GPIO.setup(A2, GPIO.OUT)
+
 GPIO.output(A0, True)
 GPIO.output(A1, True)
 GPIO.output(A2, False)
 
-GPIO.setup(A0, GPIO.OUT)
-GPIO.setup(A1, GPIO.OUT)
-GPIO.setup(A2, GPIO.OUT)
+time.sleep(1)
 
 GPIO.output(A0, False)
 GPIO.output(A1, False)
