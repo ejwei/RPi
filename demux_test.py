@@ -29,3 +29,9 @@ time.sleep(1)
 GPIO.output(A0, True)
 GPIO.output(A1, False)
 GPIO.output(A2, False)
+
+time.sleep(1)
+
+GPIO.output(A0, True)
+GPIO.output(A1, True)
+GPIO.output(A2, False)
