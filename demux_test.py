@@ -29,8 +29,9 @@ A2 = 22
 def printThread(testComplete):
 	while True:
 		print('Still in print thread')
-		rcv = port.read(1)
-		print(rcv)
+		if(port.isWaiting()):
+			rcv = port.read(1)
+			print(rcv)
 		if (testComplete == 1 and port.isWaiting() == 0): 
 			print("Closing the Thread")
 			port.close()
@@ -64,7 +65,7 @@ def testThread():
 	GPIO.output(A2, False)
 
 	time.sleep(5)
-	
+
 	print("Test Completed!")
 	testComplete = 1
 
