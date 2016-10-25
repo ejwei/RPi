@@ -32,6 +32,7 @@ def printThread(testComplete):
 		if(port.inWaiting()):
 			rcv = port.read(1)
 			print(rcv)
+			print('Test Complete:' + testComplete)
 		if (testComplete == 1 and port.inWaiting() == 0): 
 			print("Closing the Thread")
 			port.close()
