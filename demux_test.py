@@ -63,6 +63,8 @@ def testThread():
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
 
+	time.sleep(5)
+	
 	print("Test Completed!")
 	testComplete = 1
 
