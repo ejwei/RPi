@@ -24,9 +24,9 @@ A0 = 17
 A1 = 27
 A2 = 22
 
-testComplete = 0
 
-def printThread():
+
+def printThread(testComplete):
 	while True:
 		print('Still in print thread')
 		rcv = port.read(1)
@@ -37,11 +37,12 @@ def printThread():
 			thread2.exit()
 
 def testThread():
+	testComplete = 0
 	GPIO.setup(A0, GPIO.OUT)
 	GPIO.setup(A1, GPIO.OUT)
 	GPIO.setup(A2, GPIO.OUT)
 	
-	thread2.start()
+	thread2.start(testComplete)
 	time.sleep(5)
 	
 	GPIO.output(A0, False)
@@ -60,11 +61,9 @@ def testThread():
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
 
-	
-
 	print("Test Completed!")
 	testComplete = 1
 
 thread = threading.Thread(target=testThread)
-thread2 = threading.Thread(target=printThread)
+thread2 = threading.Thread(target=printThread, args=(testComplete))
 thread.start()
