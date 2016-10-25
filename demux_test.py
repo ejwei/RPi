@@ -38,8 +38,8 @@ def printThread(testComplete):
 
 def testThread():
 	testComplete = 0
-	thread2 = threading.Thread(target=printThread, args=(testComplete))
-	
+	thread2 = threading.Thread(target=printThread, args=(testComplete,))
+
 	GPIO.setup(A0, GPIO.OUT)
 	GPIO.setup(A1, GPIO.OUT)
 	GPIO.setup(A2, GPIO.OUT)
