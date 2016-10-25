@@ -34,19 +34,19 @@ class printThread(threading.Thread):
 		
 
 	def run(self):
-	while True:
-		bytesToRead = port.inWaiting()
+		while True:
+			bytesToRead = port.inWaiting()
 
-		if(bytesToRead > 0):
-			print("Reading Bytes")
-			rcv = port.read(bytesToRead)
-			print(rcv)
-			print("Done with Bytes")
+			if(bytesToRead > 0):
+				print("Reading Bytes")
+				rcv = port.read(bytesToRead)
+				print(rcv)
+				print("Done with Bytes")
 
-		if(q.qsize() > 0): 
-			print("Closing the Thread")
-			port.close()
-			thread2.exit()
+			if(q.qsize() > 0): 
+				print("Closing the Thread")
+				port.close()
+				thread2.exit()
 
 class testThread(threading.Thread):
 	
