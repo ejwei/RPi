@@ -25,21 +25,22 @@ A1 = 27
 A2 = 22
 testComplete = 0
 
-
 def printThread():
 	while True:
 		bytesToRead = port.inWaiting()
+
 		if(bytesToRead > 0):
 			print("Reading Bytes")
 			rcv = port.read(bytesToRead)
 			print(rcv)
 			print("Done with Bytes")
 
+		print(testComplete)
+		
 		if(testComplete == 1): 
 			print("Closing the Thread")
 			port.close()
 			thread2.exit()
-			break
 
 def testThread():
 	
