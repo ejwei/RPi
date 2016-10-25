@@ -44,7 +44,7 @@ def testThread():
 	GPIO.setup(A1, GPIO.OUT)
 	GPIO.setup(A2, GPIO.OUT)
 	
-	thread2.start(testComplete)
+	thread2.start()
 	time.sleep(5)
 	
 	GPIO.output(A0, False)
