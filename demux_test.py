@@ -31,9 +31,10 @@ def printThread():
 		print('Still in print thread')
 		rcv = port.read(1)
 		print(rcv)
-		if (testComplete == 1): 
+		if (testComplete == 1 && port.isWaiting() == 0): 
+			print("Closing the Thread")
 			port.close()
-			threa2.exit()
+			thread2.exit()
 
 def testThread():
 	GPIO.setup(A0, GPIO.OUT)
