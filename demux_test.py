@@ -37,11 +37,10 @@ def printThread():
 			print("Closing the Thread")
 			port.close()
 			thread2.exit()
+			break
 
 def testThread():
 	
-	
-
 	GPIO.setup(A0, GPIO.OUT)
 	GPIO.setup(A1, GPIO.OUT)
 	GPIO.setup(A2, GPIO.OUT)
