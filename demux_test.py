@@ -86,4 +86,4 @@ thread = testThread(q)
 thread2 = printThread(q)
 
 print("Start the Test Thread!")
-thread.start(q)
+thread.start()
