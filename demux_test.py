@@ -28,7 +28,7 @@ def printThread():
 	while True:
 		rcv = port.read()
 		print(rcv)
-		if (testComplete = 0): break
+		if (testComplete == 0): break
 
 def testThread():
 	GPIO.setup(A0, GPIO.OUT)
