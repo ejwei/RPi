@@ -29,10 +29,8 @@ A2 = 22
 
 class printThread(threading.Thread):
 	def __init__(self, q):
-		threading.Thread.__init__(self)
 		self.q = q
 		
-
 	def run(self):
 		while True:
 			bytesToRead = port.inWaiting()
@@ -49,12 +47,9 @@ class printThread(threading.Thread):
 				thread2.exit()
 
 class testThread(threading.Thread):
-	
 	def __init__(self, q):
-		threading.Thread.__init__(self)
 		self.q = q
 		
-
 	def run(self):
 		GPIO.setup(A0, GPIO.OUT)
 		GPIO.setup(A1, GPIO.OUT)
