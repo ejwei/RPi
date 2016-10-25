@@ -28,11 +28,11 @@ A2 = 22
 
 def printThread(testComplete):
 	while True:
-		print('Still in print thread')
-		if(port.isWaiting()):
+		# print('Still in print thread')
+		if(port.inWaiting()):
 			rcv = port.read(1)
 			print(rcv)
-		if (testComplete == 1 and port.isWaiting() == 0): 
+		if (testComplete == 1 and port.inWaiting() == 0): 
 			print("Closing the Thread")
 			port.close()
 			thread2.exit()
