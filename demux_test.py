@@ -36,20 +36,20 @@ def testThread():
 	GPIO.setup(A2, GPIO.OUT)
 	
 	thread2.start()
-	time.sleep(1)
+	time.sleep(60)
 
 
 	GPIO.output(A0, False)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
-	time.sleep(1)
+	time.sleep(60)
 
 	GPIO.output(A0, True)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
-	time.sleep(1)
+	time.sleep(60)
 
 	GPIO.output(A0, True)
 	GPIO.output(A1, True)
