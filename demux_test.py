@@ -31,7 +31,7 @@ def printThread():
 		print('Still in print thread')
 		rcv = port.read(1)
 		print(rcv)
-		if (testComplete == 1 && port.isWaiting() == 0): 
+		if (testComplete == 1 and port.isWaiting() == 0): 
 			print("Closing the Thread")
 			port.close()
 			thread2.exit()
