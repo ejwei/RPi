@@ -30,7 +30,8 @@ A2 = 22
 class printThread(threading.Thread):
 	def __init__(self, q):
 		self.q = q
-		
+		threading.Thread.__init__ (self)
+
 	def run(self):
 		while True:
 			bytesToRead = port.inWaiting()
@@ -41,14 +42,15 @@ class printThread(threading.Thread):
 				print(rcv)
 				print("Done with Bytes")
 
-			if(q.qsize() > 0): 
+			if not q.empty():
 				print("Closing the Thread")
 				port.close()
-				thread2.exit()
+				break
 
 class testThread(threading.Thread):
 	def __init__(self, q):
 		self.q = q
+		threading.Thread.__init__ (self)
 		
 	def run(self):
 		GPIO.setup(A0, GPIO.OUT)
@@ -79,7 +81,9 @@ class testThread(threading.Thread):
 		print("Test Completed!")
 		q.put(_sentinel)
 
+
 thread = threading.Thread(target=testThread, args=(q,))
 thread2 = threading.Thread(target=printThread, args=(q,))
 
+print("Start the Test Thread!")
 thread.start()
