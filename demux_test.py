@@ -24,7 +24,7 @@ A2 = 22
 
 def printThread():
 	while True:
-		rcv = port.readLine()
+		rcv = port.readline()
 		print(rcv)
 
 def testThread():
