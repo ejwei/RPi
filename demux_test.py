@@ -26,6 +26,7 @@ testComplete = 0
 
 def printThread():
 	while True:
+		print('Still in print thread')
 		rcv = port.read(1)
 		print(rcv)
 		if (testComplete == 0): break
