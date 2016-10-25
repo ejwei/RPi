@@ -26,10 +26,10 @@ testComplete = 0
 
 def printThread():
 	while True:
-		print('Still in print thread')
+		# print('Still in print thread')
 		rcv = port.read(1)
 		print(rcv)
-		if (testComplete == 0): break
+		if (testComplete == 1): break
 
 def testThread():
 	GPIO.setup(A0, GPIO.OUT)
