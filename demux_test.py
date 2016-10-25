@@ -23,10 +23,10 @@ GPIO.setmode(GPIO.BCM)
 A0 = 17
 A1 = 27
 A2 = 22
+testComplete = 0
 
 
-
-def printThread(testComplete):
+def printThread():
 	while True:
 		# print('Still in print thread')
 		bytesToRead = port.inWaiting()
@@ -39,8 +39,8 @@ def printThread(testComplete):
 			thread2.exit()
 
 def testThread():
-	testComplete = 0
-	thread2 = threading.Thread(target=printThread, args=(testComplete,))
+	
+	
 
 	GPIO.setup(A0, GPIO.OUT)
 	GPIO.setup(A1, GPIO.OUT)
@@ -71,5 +71,6 @@ def testThread():
 	testComplete = 1
 
 thread = threading.Thread(target=testThread)
+thread2 = threading.Thread(target=printThread)
 
 thread.start()
