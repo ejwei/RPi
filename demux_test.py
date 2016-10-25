@@ -2,9 +2,11 @@ import RPi._GPIO as GPIO
 import time
 import serial
 import threading
+import Queue 
 
 # Setup Serial
 port = serial.Serial("/dev/ttyAMA0", baudrate = 115200, timeout = None)
+stringQueue = Queue.Queue(0)
 
 #set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
@@ -29,7 +31,9 @@ def printThread():
 		print('Still in print thread')
 		rcv = port.read(1)
 		print(rcv)
-		if (testComplete == 1): break
+		if (testComplete == 1): 
+			port.close()
+			break
 
 def testThread():
 	GPIO.setup(A0, GPIO.OUT)
@@ -37,24 +41,25 @@ def testThread():
 	GPIO.setup(A2, GPIO.OUT)
 	
 	thread2.start()
-	# time.sleep(5)
+	time.sleep(5)
+	
 	GPIO.output(A0, False)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
-	# time.sleep(5)
+	time.sleep(5)
 
 	GPIO.output(A0, True)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
-	# time.sleep(5)
+	time.sleep(5)
 
 	GPIO.output(A0, True)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
 
-	port.close()
+	
 
 	print("Test Completed!")
 	testComplete = 1
