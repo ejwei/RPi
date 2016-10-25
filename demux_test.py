@@ -33,7 +33,7 @@ def printThread():
 		print(rcv)
 		if (testComplete == 1): 
 			port.close()
-			break
+			threa2.exit()
 
 def testThread():
 	GPIO.setup(A0, GPIO.OUT)
