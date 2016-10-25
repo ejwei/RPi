@@ -35,6 +35,7 @@ def printThread():
 			rcv = port.read(bytesToRead)
 			print(rcv)
 			print("Done with Bytes")
+
 		if (testComplete == 1): 
 			print("Closing the Thread")
 			port.close()
@@ -71,6 +72,7 @@ def testThread():
 	print("Test Completed!")
 	testComplete = 1
 	print(testComplete)
+	thread2.join()
 
 thread = threading.Thread(target=testThread)
 thread2 = threading.Thread(target=printThread)
