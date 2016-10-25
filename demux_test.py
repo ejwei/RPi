@@ -28,7 +28,7 @@ testComplete = 0
 
 def printThread():
 	while True:
-		# print('Still in print thread')
+		print('2')
 		bytesToRead = port.inWaiting()
 		if(bytesToRead > 0):
 			print("Reading Bytes")
