@@ -35,15 +35,11 @@ GPIO.output(A0, False)
 GPIO.output(A1, False)
 GPIO.output(A2, False)
 
-rcv = port.readline()
-print(rcv)
-
-# while True:
-# 	print(port.inWaiting())
-# 	if(port.inWaiting() > 0):
-# 		rcv = port.readline()
-# 		print(rcv)
-# 		break
+while True:
+	if(port.inWaiting() > 0):
+		rcv = port.readline()
+		print(rcv)
+		break
 
 time.sleep(1)
 
@@ -70,3 +66,4 @@ while True:
 		break
 
 port.close()
+print("Test Completed!")
