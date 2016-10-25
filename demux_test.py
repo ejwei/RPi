@@ -4,7 +4,7 @@ import serial
 import threading
 
 # Setup Serial
-port = serial.Serial("/dev/ttyAMA0", baudrate = 115200, timeout = none)
+port = serial.Serial("/dev/ttyAMA0", baudrate = 115200)
 
 #set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
@@ -26,7 +26,7 @@ testComplete = 0
 
 def printThread():
 	while True:
-		rcv = port.read()
+		rcv = port.read(1)
 		print(rcv)
 		if (testComplete == 0): break
 
