@@ -32,7 +32,7 @@ def testThread():
 	GPIO.setup(A1, GPIO.OUT)
 	GPIO.setup(A2, GPIO.OUT)
 	
-	printThread()
+	thread2.start()
 	time.sleep(1)
 
 
@@ -40,14 +40,14 @@ def testThread():
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
-	printThread()
+	thread2.start()
 	time.sleep(1)
 
 	GPIO.output(A0, True)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
-	printThread()
+	thread2.start()
 	time.sleep(1)
 
 	GPIO.output(A0, True)
@@ -59,4 +59,5 @@ def testThread():
 	print("Test Completed!")
 
 thread = threading.Thread(target=testThread)
+thread2 = threading.Thread(target=printThread)
 thread.start()
