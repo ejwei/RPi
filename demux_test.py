@@ -28,7 +28,6 @@ testComplete = 0
 
 def printThread():
 	while True:
-		print('2')
 		bytesToRead = port.inWaiting()
 		if(bytesToRead > 0):
 			print("Reading Bytes")
@@ -36,7 +35,7 @@ def printThread():
 			print(rcv)
 			print("Done with Bytes")
 
-		if (testComplete == 1): 
+		if(testComplete == 1): 
 			print("Closing the Thread")
 			port.close()
 			thread2.exit()
