@@ -51,7 +51,7 @@ class testThread(threading.Thread):
 	def __init__(self, q):
 		self.q = q
 		threading.Thread.__init__ (self)
-		
+
 	def run(self):
 		GPIO.setup(A0, GPIO.OUT)
 		GPIO.setup(A1, GPIO.OUT)
@@ -82,8 +82,8 @@ class testThread(threading.Thread):
 		q.put(_sentinel)
 
 
-thread = threading.Thread(target=testThread, args=(q,))
-thread2 = threading.Thread(target=printThread, args=(q,))
+thread = testThread(q)
+thread2 = printThread(q)
 
 print("Start the Test Thread!")
-thread.start()
+thread.start(q)
