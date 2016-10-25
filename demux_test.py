@@ -22,10 +22,13 @@ A0 = 17
 A1 = 27
 A2 = 22
 
+testComplete = 0
+
 def printThread():
 	while True:
 		rcv = port.read()
 		print(rcv)
+		if (testComplete = 0): break
 
 def testThread():
 	GPIO.setup(A0, GPIO.OUT)
@@ -55,6 +58,7 @@ def testThread():
 	port.close()
 
 	print("Test Completed!")
+	testComplete = 1
 
 thread = threading.Thread(target=testThread)
 thread2 = threading.Thread(target=printThread)
