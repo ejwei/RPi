@@ -6,7 +6,10 @@ import Queue
 
 # Setup Serial
 port = serial.Serial("/dev/ttyAMA0", baudrate = 115200, timeout = None)
-stringQueue = Queue.Queue(0)
+q = Queue.Queue(0)
+
+# Object that signals shutdown
+_sentinel = object()
 
 #set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
@@ -23,9 +26,14 @@ GPIO.setmode(GPIO.BCM)
 A0 = 17
 A1 = 27
 A2 = 22
-testComplete = 0
 
-def printThread():
+class printThread(threading.Thread):
+	def __init__(self, q):
+		threading.Thread.__init__(self)
+		self.q = q
+		
+
+	def run(self):
 	while True:
 		bytesToRead = port.inWaiting()
 
@@ -35,46 +43,48 @@ def printThread():
 			print(rcv)
 			print("Done with Bytes")
 
-		print(testComplete)
-		
-		if(testComplete == 1): 
+		if(q.qsize() > 0): 
 			print("Closing the Thread")
 			port.close()
 			thread2.exit()
 
-def testThread():
+class testThread(threading.Thread):
 	
-	GPIO.setup(A0, GPIO.OUT)
-	GPIO.setup(A1, GPIO.OUT)
-	GPIO.setup(A2, GPIO.OUT)
-	
-	thread2.start()
-	time.sleep(0.1)
-	
-	GPIO.output(A0, False)
-	GPIO.output(A1, False)
-	GPIO.output(A2, False)
+	def __init__(self, q):
+		threading.Thread.__init__(self)
+		self.q = q
+		
 
-	time.sleep(0.1)
+	def run(self):
+		GPIO.setup(A0, GPIO.OUT)
+		GPIO.setup(A1, GPIO.OUT)
+		GPIO.setup(A2, GPIO.OUT)
+		
+		thread2.start()
+		time.sleep(0.1)
+		
+		GPIO.output(A0, False)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
 
-	GPIO.output(A0, True)
-	GPIO.output(A1, False)
-	GPIO.output(A2, False)
+		time.sleep(0.1)
 
-	time.sleep(0.1)
+		GPIO.output(A0, True)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
 
-	GPIO.output(A0, True)
-	GPIO.output(A1, True)
-	GPIO.output(A2, False)
+		time.sleep(0.1)
 
-	time.sleep(0.1)
+		GPIO.output(A0, True)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
 
-	print("Test Completed!")
-	testComplete = 1
-	print(testComplete)
-	thread2.join()
+		time.sleep(0.1)
 
-thread = threading.Thread(target=testThread)
-thread2 = threading.Thread(target=printThread)
+		print("Test Completed!")
+		q.put(_sentinel)
+
+thread = threading.Thread(target=testThread, args=(q,))
+thread2 = threading.Thread(target=printThread, args=(q,))
 
 thread.start()
