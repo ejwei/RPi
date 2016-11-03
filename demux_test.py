@@ -57,7 +57,6 @@ class testThread(threading.Thread):
 		GPIO.setup(A0, GPIO.OUT)
 		GPIO.setup(A1, GPIO.OUT)
 		
-		GPIO.setup(A2, GPIO.OUT)
 		GPIO.output(muxEnable, False)
 
 		thread2.start()
