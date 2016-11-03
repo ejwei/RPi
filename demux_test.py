@@ -23,9 +23,10 @@ GPIO.setmode(GPIO.BCM)
 # A2 - GPIO 22
 
 # Setup the Outputs
-A0 = 17
-A1 = 27
-A2 = 22
+A0 = 7
+A1 = 12
+muxEnable = 22
+
 
 class printThread(threading.Thread):
 	def __init__(self, q):
@@ -55,28 +56,40 @@ class testThread(threading.Thread):
 	def run(self):
 		GPIO.setup(A0, GPIO.OUT)
 		GPIO.setup(A1, GPIO.OUT)
+		
 		GPIO.setup(A2, GPIO.OUT)
-		
+		GPIO.output(muxEnable, False)
+
 		thread2.start()
-		time.sleep(0.1)
+		time.sleep(2)
 		
+		print("Enable #1")
+		GPIO.output(muxEnable, True)
 		GPIO.output(A0, False)
 		GPIO.output(A1, False)
-		GPIO.output(A2, False)
+		
 
-		time.sleep(0.1)
+		time.sleep(2)
 
+		print("Enable #2")
+		GPIO.output(muxEnable, True)
 		GPIO.output(A0, True)
 		GPIO.output(A1, False)
-		GPIO.output(A2, False)
 
-		time.sleep(0.1)
 
+		time.sleep(2)
+		print("Enable #3")
+		GPIO.output(muxEnable, True)
+		GPIO.output(A0, False)
+		GPIO.output(A1, True)
+
+		time.sleep(2)
+		print("Enable #4")
+		GPIO.output(muxEnable, True)
 		GPIO.output(A0, True)
 		GPIO.output(A1, True)
-		GPIO.output(A2, False)
 
-		time.sleep(0.1)
+		time.sleep(2)
 
 		print("Test Completed!")
 		q.put(_sentinel)
