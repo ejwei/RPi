@@ -23,9 +23,9 @@ GPIO.setmode(GPIO.BCM)
 # A2 - GPIO 22
 
 # Setup the Outputs
-A0 = 7
-A1 = 12
-muxEnable = 22
+A0 = 4
+A1 = 18
+muxEnable = 25
 
 
 class printThread(threading.Thread):
@@ -90,6 +90,8 @@ class testThread(threading.Thread):
 		GPIO.output(A1, True)
 
 		time.sleep(2)
+
+		GPIO.output(muxEnable, False)
 
 		print("Test Completed!")
 		q.put(_sentinel)
