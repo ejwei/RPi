@@ -137,7 +137,61 @@ class testThread(threading.Thread):
 		GPIO.output(muxEnable, True)
 		GPIO.output(A0Mux, True)
 		GPIO.output(A1Mux, False)
+		# 000
+		GPIO.output(A0, False)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
 
+		time.sleep(1)
+
+		#001
+		GPIO.output(A0, True)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
+
+
+		time.sleep(1)
+
+		#010
+		GPIO.output(A0, False)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
+
+
+		time.sleep(1)
+
+		#011
+		GPIO.output(A0, True)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
+
+		time.sleep(1)
+
+		#100
+		GPIO.output(A0,False)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#101
+		GPIO.output(A0,True)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#110
+		GPIO.output(A0,False)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#111
+		GPIO.output(A0,True)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
 
 		time.sleep(2)
 		print("Enable #3")
@@ -145,12 +199,123 @@ class testThread(threading.Thread):
 		GPIO.output(A0Mux, False)
 		GPIO.output(A1Mux, True)
 
+		# 000
+		GPIO.output(A0, False)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
+
+		time.sleep(1)
+
+		#001
+		GPIO.output(A0, True)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
+
+
+		time.sleep(1)
+
+		#010
+		GPIO.output(A0, False)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
+
+
+		time.sleep(1)
+
+		#011
+		GPIO.output(A0, True)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
+
+		time.sleep(1)
+
+		#100
+		GPIO.output(A0,False)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#101
+		GPIO.output(A0,True)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#110
+		GPIO.output(A0,False)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#111
+		GPIO.output(A0,True)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
 		time.sleep(2)
+
 		print("Enable #4")
 		GPIO.output(muxEnable, True)
 		GPIO.output(A0Mux, True)
 		GPIO.output(A1Mux, True)
 
+		# 000
+		GPIO.output(A0, False)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
+
+		time.sleep(1)
+
+		#001
+		GPIO.output(A0, True)
+		GPIO.output(A1, False)
+		GPIO.output(A2, False)
+
+
+		time.sleep(1)
+
+		#010
+		GPIO.output(A0, False)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
+
+
+		time.sleep(1)
+
+		#011
+		GPIO.output(A0, True)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
+
+		time.sleep(1)
+
+		#100
+		GPIO.output(A0,False)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#101
+		GPIO.output(A0,True)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#110
+		GPIO.output(A0,False)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#111
+		GPIO.output(A0,True)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
 		time.sleep(2)
 
 		GPIO.output(muxEnable, False)
