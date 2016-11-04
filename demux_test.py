@@ -27,9 +27,9 @@ A0Mux = 4
 A1Mux = 18
 muxEnable = 25
 
-A0 = 11
-A1 = 13
-A2 = 15
+A0 = 17
+A1 = 27
+A2 = 22
 
 
 class printThread(threading.Thread):
@@ -80,27 +80,27 @@ class testThread(threading.Thread):
 		GPIO.output(A1, False)
 		GPIO.output(A2, False)
 
-		time.sleep(0.1)
+		time.sleep(1)
 
 		GPIO.output(A0, True)
 		GPIO.output(A1, False)
 		GPIO.output(A2, False)
 
 
-		time.sleep(0.1)
+		time.sleep(1)
 
 		GPIO.output(A0, False)
 		GPIO.output(A1, True)
 		GPIO.output(A2, False)
 
 
-		time.sleep(0.1)
+		time.sleep(1)
 
 		GPIO.output(A0, True)
 		GPIO.output(A1, True)
 		GPIO.output(A2, False)
 
-		time.sleep(2)
+		time.sleep(1)
 
 		print("Enable #2")
 		GPIO.output(muxEnable, True)
