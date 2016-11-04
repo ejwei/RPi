@@ -23,9 +23,13 @@ GPIO.setmode(GPIO.BCM)
 # A2 - GPIO 22
 
 # Setup the Outputs
-A0 = 4
-A1 = 18
+A0Mux = 4
+A1Mux = 18
 muxEnable = 25
+
+A0 = 11
+A1 = 13
+A2 = 15
 
 
 class printThread(threading.Thread):
@@ -54,10 +58,14 @@ class testThread(threading.Thread):
 		threading.Thread.__init__ (self)
 
 	def run(self):
+		GPIO.setup(A0Mux, GPIO.OUT)
+		GPIO.setup(A1Mux, GPIO.OUT)
+		GPIO.setup(muxEnable, GPIO.OUT)
+
 		GPIO.setup(A0, GPIO.OUT)
 		GPIO.setup(A1, GPIO.OUT)
-		GPIO.setup(muxEnable, GPIO.OUT)
-		
+		GPIO.setup(A2, GPIO.OUT)
+
 		GPIO.output(muxEnable, False)
 
 		thread2.start()
@@ -65,29 +73,52 @@ class testThread(threading.Thread):
 		
 		print("Enable #1")
 		GPIO.output(muxEnable, True)
+		GPIO.output(A0Mux, False)
+		GPIO.output(A1Mux, False)
+		
 		GPIO.output(A0, False)
 		GPIO.output(A1, False)
-		
+		GPIO.output(A2, False)
+
+		time.sleep(0.1)
+
+		GPIO.output(A0, False)
+		GPIO.output(A1, False)
+		GPIO.output(A2, True)
+
+
+		time.sleep(0.1)
+
+		GPIO.output(A0, False)
+		GPIO.output(A1, True)
+		GPIO.output(A2, False)
+
+
+		time.sleep(0.1)
+
+		GPIO.output(A0, False)
+		GPIO.output(A1, True)
+		GPIO.output(A2, True)
 
 		time.sleep(2)
 
 		print("Enable #2")
 		GPIO.output(muxEnable, True)
-		GPIO.output(A0, True)
-		GPIO.output(A1, False)
+		GPIO.output(A0Mux, True)
+		GPIO.output(A1Mux, False)
 
 
 		time.sleep(2)
 		print("Enable #3")
 		GPIO.output(muxEnable, True)
-		GPIO.output(A0, False)
-		GPIO.output(A1, True)
+		GPIO.output(A0Mux, False)
+		GPIO.output(A1Mux, True)
 
 		time.sleep(2)
 		print("Enable #4")
 		GPIO.output(muxEnable, True)
-		GPIO.output(A0, True)
-		GPIO.output(A1, True)
+		GPIO.output(A0Mux, True)
+		GPIO.output(A1Mux, True)
 
 		time.sleep(2)
 
