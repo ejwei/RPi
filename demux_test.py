@@ -125,6 +125,8 @@ class testThread(threading.Thread):
 		GPIO.output(A1,True)
 		GPIO.output(A2,True)
 
+		time.sleep(1)
+
 		#111
 		GPIO.output(A0,True)
 		GPIO.output(A1,True)
