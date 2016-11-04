@@ -82,9 +82,9 @@ class testThread(threading.Thread):
 
 		time.sleep(0.1)
 
-		GPIO.output(A0, False)
+		GPIO.output(A0, True)
 		GPIO.output(A1, False)
-		GPIO.output(A2, True)
+		GPIO.output(A2, False)
 
 
 		time.sleep(0.1)
@@ -96,9 +96,9 @@ class testThread(threading.Thread):
 
 		time.sleep(0.1)
 
-		GPIO.output(A0, False)
+		GPIO.output(A0, True)
 		GPIO.output(A1, True)
-		GPIO.output(A2, True)
+		GPIO.output(A2, False)
 
 		time.sleep(2)
 
