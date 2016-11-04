@@ -76,12 +76,14 @@ class testThread(threading.Thread):
 		GPIO.output(A0Mux, False)
 		GPIO.output(A1Mux, False)
 		
+		# 000
 		GPIO.output(A0, False)
 		GPIO.output(A1, False)
 		GPIO.output(A2, False)
 
 		time.sleep(1)
 
+		#001
 		GPIO.output(A0, True)
 		GPIO.output(A1, False)
 		GPIO.output(A2, False)
@@ -89,6 +91,7 @@ class testThread(threading.Thread):
 
 		time.sleep(1)
 
+		#010
 		GPIO.output(A0, False)
 		GPIO.output(A1, True)
 		GPIO.output(A2, False)
@@ -96,11 +99,37 @@ class testThread(threading.Thread):
 
 		time.sleep(1)
 
+		#011
 		GPIO.output(A0, True)
 		GPIO.output(A1, True)
 		GPIO.output(A2, False)
 
 		time.sleep(1)
+
+		#100
+		GPIO.output(A0,False)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#101
+		GPIO.output(A0,True)
+		GPIO.output(A1,False)
+		GPIO.output(A2,True)
+
+		time.sleep(1)
+
+		#110
+		GPIO.output(A0,False)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
+
+		#111
+		GPIO.output(A0,True)
+		GPIO.output(A1,True)
+		GPIO.output(A2,True)
+
 
 		print("Enable #2")
 		GPIO.output(muxEnable, True)
