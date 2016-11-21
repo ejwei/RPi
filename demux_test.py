@@ -132,7 +132,8 @@ class testThread(threading.Thread):
 		GPIO.output(A1,True)
 		GPIO.output(A2,True)
 
-
+		time.sleep(2)
+		
 		print("Enable #2")
 		GPIO.output(muxEnable, True)
 		GPIO.output(A0Mux, True)
