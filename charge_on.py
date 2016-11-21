@@ -78,8 +78,8 @@ class testThread(threading.Thread):
 
 		time.sleep(1)
 
-		#100
-		GPIO.output(A0,False)
+		#101 (Y5)
+		GPIO.output(A0,True)
 		GPIO.output(A1,False)
 		GPIO.output(A2,True)
 
