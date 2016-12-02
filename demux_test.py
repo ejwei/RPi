@@ -43,8 +43,8 @@ class printThread(threading.Thread):
 
 			if(bytesToRead > 0):
 				print("Reading Bytes")
-				# rcv = port.readline()
-				rcv = port.read(bytesToRead)
+				rcv = port.readline()
+				# rcv = port.read(bytesToRead)
 				print(rcv)
 				print("Done with Bytes")
 
