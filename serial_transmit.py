@@ -59,7 +59,7 @@ class testThread(threading.Thread):
 		threading.Thread.__init__ (self)
 
 	def run(self):
-		port.write("fg_read\r\n")
+		port.write("1\r\n")
 		port.flush()
 		print("Test Completed!")
 		q.put(_sentinel)
