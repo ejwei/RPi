@@ -36,50 +36,50 @@ numTests = 7
 
 #selftest commands
 
-def ledTest(self):
+def ledTest():
 	consoleCommand("led")
 	time.sleep(3)
 
-def playTest(self):
+def playTest():
 	consoleCommand("play")
 	time.sleep(2)
 
-def recordTest(self):
+def recordTest():
 	consoleCommand("record")
 	time.sleep(6)
 
-def playbackTest(self):
+def playbackTest():
 	consoleCommand("playback")
 	time.sleep(6)
 
-def motorTest(self):
+def motorTest():
 	consoleCommand("6")
 	time.sleep(3)
 
-def encoderTest(self):
+def encoderTest():
 	consoleCommand("7")
 	demuxTest()
 	time.sleep(15)
 
-def buttonTest(self):
+def buttonTest():
 	consoleCommand("8")
 	time.sleep(3)
 
-def powerButtonTest(self):
+def powerButtonTest():
 	consoleCommand("9")
 	time.sleep(2)
 
-def sdCardTest(self):
+def sdCardTest():
 	consoleCommand("11")
 	time.sleep(1)
 
-def pingTest(self):
+def pingTest():
 	consoleCommand("net_connect empathKY_FEP goldenbear WPA2")
 	time.sleep(5)
 	consoleCommand("net_ping 10.1.10.1")
 	time.sleep(2)
 
-def chargeTest(self):
+def chargeTest():
 	chargeOn()
 	consoleCommand("16")
 	time.sleep(1)
@@ -89,7 +89,7 @@ def chargeTest(self):
 
 #Individual Tests
 
-def chargeOff(self):
+def chargeOff():
 	GPIO.setup(A0Mux, GPIO.OUT)
 	GPIO.setup(A1Mux, GPIO.OUT)
 	GPIO.setup(muxEnable, GPIO.OUT)
@@ -117,7 +117,7 @@ def chargeOff(self):
 
 	print("Charge Off!")
 
-def chargeOn(self):
+def chargeOn():
 	GPIO.setup(A0Mux, GPIO.OUT)
 	GPIO.setup(A1Mux, GPIO.OUT)
 	GPIO.setup(muxEnable, GPIO.OUT)
@@ -145,7 +145,7 @@ def chargeOn(self):
 
 	print("Charge On!")
 
-def demuxTest(self):
+def demuxTest():
 	GPIO.setup(A0Mux, GPIO.OUT)
 	GPIO.setup(A1Mux, GPIO.OUT)
 	GPIO.setup(muxEnable, GPIO.OUT)
