@@ -100,7 +100,6 @@ def chargeOff():
 
 	GPIO.output(muxEnable, False)
 
-	thread2.start()
 	time.sleep(2)
 
 	print("Enable #4")
@@ -128,7 +127,6 @@ def chargeOn():
 
 	GPIO.output(muxEnable, False)
 
-	thread2.start()
 	time.sleep(2)
 
 	print("Enable #4")
@@ -423,7 +421,7 @@ def consoleCommand(commandString):
 #funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
 #			 powerButtonTest, sdCardTest, pingTest, chargeTest]
 
-funkList = [ledTest, sdCardTest, pingTest, chargeTest]
+ funkList = [ledTest, sdCardTest, pingTest, chargeTest]
 
 class printThread(threading.Thread):
 	def __init__(self, q):
@@ -435,11 +433,11 @@ class printThread(threading.Thread):
 			bytesToRead = port.inWaiting()
 
 			if(bytesToRead > 0):
-				print("Reading Bytes")
+				# print("Reading Bytes")
 				rcv = port.readline()
 				# rcv = port.read(bytesToRead)
-				print(rcv)
-				print("Done with Bytes")
+				print("[ELFKIN OUTPUT]" + rcv)
+				# print("Done with Bytes")
 
 			if not q.empty():
 				print("Closing the Thread")
