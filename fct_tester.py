@@ -440,13 +440,13 @@ class testThread(threading.Thread):
 		threading.Thread.__init__ (self)
 
 	def run(self):
+		GPIO.cleanup()
+		muxSetup()
 
 		while(1):
-
 			print("\n\n*******************************")
 			print("[FCT TEST] Starting Test Suite!")
 			print("*******************************")
-			muxSetup()
 			for test in funkList:
 				raw_input("Press Enter to continue...\n")
 				test()
