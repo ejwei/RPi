@@ -420,10 +420,10 @@ def consoleCommand(commandString):
 	print("Issued command string: \n" + commandString)
 
 
-funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
-			 powerButtonTest, sdCardTest, pingTest, chargeTest]
+#funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
+#			 powerButtonTest, sdCardTest, pingTest, chargeTest]
 
-
+funkList = [ledTest, sdCardTest, pingTest, chargeTest]
 
 class printThread(threading.Thread):
 	def __init__(self, q):
@@ -470,3 +470,4 @@ thread2 = printThread(q)
 
 print("Start the Test Thread!")
 thread.start()
+thread2.start()
