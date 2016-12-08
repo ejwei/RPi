@@ -81,8 +81,9 @@ def pingTest():
 
 def chargeTest():
 	chargeOn()
+	time.sleep(2)
 	consoleCommand("16")
-	time.sleep(1)
+	time.sleep(2)
 	chargeOff()
 
 
@@ -418,8 +419,8 @@ def consoleCommand(commandString):
 	print("Issued command string: \n" + commandString)
 
 
-#funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
-#			 powerButtonTest, sdCardTest, pingTest, chargeTest]
+# funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
+			 # powerButtonTest, sdCardTest, pingTest, chargeTest]
 
 funkList = [ledTest, sdCardTest, pingTest, chargeTest]
 
@@ -436,7 +437,7 @@ class printThread(threading.Thread):
 				# print("Reading Bytes")
 				rcv = port.readline()
 				# rcv = port.read(bytesToRead)
-				print("[ELFKIN OUTPUT]" + rcv)
+				print("[ELFKIN OUTPUT] " + rcv)
 				# print("Done with Bytes")
 
 			if not q.empty():
@@ -453,11 +454,11 @@ class testThread(threading.Thread):
 
 		while(1):
 
-			print("*******************************")
+			print("\n\n*******************************")
 			print("[FCT TEST] Starting Test Suite!")
 			print("*******************************")
 			for test in funkList:
-				raw_input("Press Enter to continue...")
+				raw_input("Press Enter to continue...\n")
 				test()
 			
 			#q.put(_sentinel)
