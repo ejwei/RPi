@@ -34,51 +34,6 @@ A2 = 22
 
 numTests = 7
 
-funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
-			 powerButtonTest, sdCardTest, pingTest, chargeTest]
-
-
-
-class printThread(threading.Thread):
-	def __init__(self, q):
-		self.q = q
-		threading.Thread.__init__ (self)
-
-	def run(self):
-		while True:
-			bytesToRead = port.inWaiting()
-
-			if(bytesToRead > 0):
-				print("Reading Bytes")
-				rcv = port.readline()
-				# rcv = port.read(bytesToRead)
-				print(rcv)
-				print("Done with Bytes")
-
-			if not q.empty():
-				print("Closing the Thread")
-				port.close()
-				break
-
-class testThread(threading.Thread):
-	def __init__(self, q):
-		self.q = q
-		threading.Thread.__init__ (self)
-
-	def run(self):
-
-		while(1):
-
-			print("*******************************")
-			print("[FCT TEST] Starting Test Suite!")
-			print("*******************************")
-			for test in funkList:
-				raw_input("Press Enter to continue...")
-				test()
-			
-			#q.put(_sentinel)
-
-
 #selftest commands
 
 def ledTest(self):
@@ -464,6 +419,50 @@ def consoleCommand(commandString):
 	port.flush()
 	print("Issued command string: \n" + commandString)
 
+
+funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
+			 powerButtonTest, sdCardTest, pingTest, chargeTest]
+
+
+
+class printThread(threading.Thread):
+	def __init__(self, q):
+		self.q = q
+		threading.Thread.__init__ (self)
+
+	def run(self):
+		while True:
+			bytesToRead = port.inWaiting()
+
+			if(bytesToRead > 0):
+				print("Reading Bytes")
+				rcv = port.readline()
+				# rcv = port.read(bytesToRead)
+				print(rcv)
+				print("Done with Bytes")
+
+			if not q.empty():
+				print("Closing the Thread")
+				port.close()
+				break
+
+class testThread(threading.Thread):
+	def __init__(self, q):
+		self.q = q
+		threading.Thread.__init__ (self)
+
+	def run(self):
+
+		while(1):
+
+			print("*******************************")
+			print("[FCT TEST] Starting Test Suite!")
+			print("*******************************")
+			for test in funkList:
+				raw_input("Press Enter to continue...")
+				test()
+			
+			#q.put(_sentinel)
 
 	
 thread = testThread(q)
