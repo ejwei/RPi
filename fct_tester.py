@@ -88,9 +88,13 @@ def chargeTest():
 
 
 
+
+
+
 #Individual Tests
 
-def chargeOff():
+
+def muxSetup():
 	GPIO.setup(A0Mux, GPIO.OUT)
 	GPIO.setup(A1Mux, GPIO.OUT)
 	GPIO.setup(muxEnable, GPIO.OUT)
@@ -99,6 +103,7 @@ def chargeOff():
 	GPIO.setup(A1, GPIO.OUT)
 	GPIO.setup(A2, GPIO.OUT)
 
+def chargeOff():
 	GPIO.output(muxEnable, False)
 
 	time.sleep(2)
@@ -118,14 +123,6 @@ def chargeOff():
 	print("Charge Off!")
 
 def chargeOn():
-	GPIO.setup(A0Mux, GPIO.OUT)
-	GPIO.setup(A1Mux, GPIO.OUT)
-	GPIO.setup(muxEnable, GPIO.OUT)
-
-	GPIO.setup(A0, GPIO.OUT)
-	GPIO.setup(A1, GPIO.OUT)
-	GPIO.setup(A2, GPIO.OUT)
-
 	GPIO.output(muxEnable, False)
 
 	time.sleep(2)
@@ -145,14 +142,6 @@ def chargeOn():
 	print("Charge On!")
 
 def demuxTest():
-	GPIO.setup(A0Mux, GPIO.OUT)
-	GPIO.setup(A1Mux, GPIO.OUT)
-	GPIO.setup(muxEnable, GPIO.OUT)
-
-	GPIO.setup(A0, GPIO.OUT)
-	GPIO.setup(A1, GPIO.OUT)
-	GPIO.setup(A2, GPIO.OUT)
-
 	GPIO.output(muxEnable, False)
 
 	thread2.start()
@@ -457,6 +446,7 @@ class testThread(threading.Thread):
 			print("\n\n*******************************")
 			print("[FCT TEST] Starting Test Suite!")
 			print("*******************************")
+			muxSetup()
 			for test in funkList:
 				raw_input("Press Enter to continue...\n")
 				test()
