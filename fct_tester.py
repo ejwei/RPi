@@ -74,9 +74,9 @@ def sdCardTest():
 	time.sleep(1)
 
 def pingTest():
-	consoleCommand("net_connect empathKY_FEP goldenbear WPA2")
+	consoleCommand("net_connect HUCKABEE2_DEMO empath WPA2")
 	time.sleep(5)
-	consoleCommand("net_ping 10.1.10.1")
+	consoleCommand("net_ping 10.1.10.79")
 	time.sleep(2)
 
 def chargeTest():
