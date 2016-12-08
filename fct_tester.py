@@ -152,14 +152,14 @@ def demuxTest():
 	GPIO.output(A0Mux, False)
 	GPIO.output(A1Mux, False)
 	
-	# 000
+	# 000 - Encoder 0, Bit 0
 	GPIO.output(A0, False)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#001
+	#001 - Encoder 0, Bit 1
 	GPIO.output(A0, True)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
@@ -167,7 +167,7 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#010
+	#010 - Encoder 0, Bit 2
 	GPIO.output(A0, False)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
@@ -175,35 +175,35 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#011
+	#011 - Encoder 0, Bit 3
 	GPIO.output(A0, True)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#100
+	#100 - Encoder 1, Bit 0
 	GPIO.output(A0,False)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#101
+	#101 - Encoder 1, Bit 1
 	GPIO.output(A0,True)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#110
+	#110 - Encoder 1, Bit 2
 	GPIO.output(A0,False)
 	GPIO.output(A1,True)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#111
+	#111 - Encoder 1, Bit 3
 	GPIO.output(A0,True)
 	GPIO.output(A1,True)
 	GPIO.output(A2,True)
@@ -214,14 +214,14 @@ def demuxTest():
 	GPIO.output(muxEnable, True)
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, False)
-	# 000
+	# 000 - Encoder 2, Bit 0
 	GPIO.output(A0, False)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#001
+	#001 - Encoder 2, Bit 1
 	GPIO.output(A0, True)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
@@ -229,7 +229,7 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#010
+	#010 - Encoder 2, Bit 2
 	GPIO.output(A0, False)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
@@ -237,35 +237,35 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#011
+	#011 - Encoder 2, Bit 3
 	GPIO.output(A0, True)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#100
+	#100 - Encoder 3, Bit 0
 	GPIO.output(A0,False)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#101
+	#101 - Encoder 3, Bit 1
 	GPIO.output(A0,True)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#110
+	#110 - Encoder 3, Bit 2
 	GPIO.output(A0,False)
 	GPIO.output(A1,True)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#111
+	#111 - Encoder 3, Bit 3
 	GPIO.output(A0,True)
 	GPIO.output(A1,True)
 	GPIO.output(A2,True)
@@ -276,14 +276,14 @@ def demuxTest():
 	GPIO.output(A0Mux, False)
 	GPIO.output(A1Mux, True)
 
-	# 000
+	# 000 - Encoder 4 - Bit 0
 	GPIO.output(A0, False)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#001
+	#001 - Encoder 4, Bit 1
 	GPIO.output(A0, True)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
@@ -291,7 +291,7 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#010
+	#010 - Encoder 4, Bit 2
 	GPIO.output(A0, False)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
@@ -299,35 +299,35 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#011
+	#011 - Encoder 4, Bit 3
 	GPIO.output(A0, True)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#100
+	#100 - Encoder 5, Bit 0
 	GPIO.output(A0,False)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#101
+	#101 - Encoder 5, Bit 1
 	GPIO.output(A0,True)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#110
+	#110 - Right Leg 0
 	GPIO.output(A0,False)
 	GPIO.output(A1,True)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#111
+	#111 - Right Leg 1
 	GPIO.output(A0,True)
 	GPIO.output(A1,True)
 	GPIO.output(A2,True)
@@ -338,14 +338,14 @@ def demuxTest():
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, True)
 
-	# 000
+	# 000 - Right Leg 2
 	GPIO.output(A0, False)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#001
+	#001 - Left Leg 0
 	GPIO.output(A0, True)
 	GPIO.output(A1, False)
 	GPIO.output(A2, False)
@@ -353,7 +353,7 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#010
+	#010 - Left Leg 1
 	GPIO.output(A0, False)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
@@ -361,21 +361,21 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#011
+	#011 - Left Leg 2
 	GPIO.output(A0, True)
 	GPIO.output(A1, True)
 	GPIO.output(A2, False)
 
 	time.sleep(1)
 
-	#100
+	#100 - Power Button
 	GPIO.output(A0,False)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
 
 	time.sleep(1)
 
-	#101
+	#101 - Charger
 	GPIO.output(A0,True)
 	GPIO.output(A1,False)
 	GPIO.output(A2,True)
