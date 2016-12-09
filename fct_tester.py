@@ -412,10 +412,17 @@ def consoleCommand(commandString):
 	print("Issued command string: \n" + commandString)
 
 
-# funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, leftButtonsTest, rightButtonsTest, \
-			 # powerButtonTest, sdCardTest, pingTest, chargeTest]
+# funkList = [[sdCardTest, "\n*****SD Card Test*****\n"], \
+# 	    [leftButtonsTest, "\n*****Left Buttons Test*****\n"], \
+# 	    [rightButtonsTest, "\n*****Right Buttons Test*****\n"], \
+# 	    [powerButtonTest, "\n*****Power Buttons Test*****\n"], \
+# 	    [ledTest, "\n*****LED Test*****\n"], \
+# 	    [pingTest, "\n*****Ping Test*****\n"], \
+# 	    [playTest, "\n*****Play Buttons Test*****\n"], \
+# 	    [recordTest, "\n*****Record Buttons Test*****\n"], \
+# 	    [playbackTest, "\n*****Playback Buttons Test*****\n"]]
+funkList = [[leftButtonsTest, "\n*****Left Buttons Test*****\n"]]
 
-funkList = [leftButtonsTest]
 
 class printThread(threading.Thread):
 	def __init__(self, q):
@@ -451,8 +458,8 @@ class testThread(threading.Thread):
 			print("[FCT TEST] Starting Test Suite!")
 			print("*******************************")
 			for test in funkList:
-				raw_input("Press Enter to continue...\n")
-				test()
+				raw_input(test[1]+ "Press Enter to continue...\n")
+				test[0]()
 			
 			#q.put(_sentinel)
 
