@@ -151,6 +151,8 @@ def chargeOn():
 def rightToeButtonsPress():
 	GPIO.output(muxEnable, True)
 	#110 - Right Leg 0
+
+	print("[FCT TESTER] R0 Button")
 	GPIO.output(A0Mux, False)
 	GPIO.output(A1Mux, True)
 	GPIO.output(A0,False)
@@ -160,6 +162,7 @@ def rightToeButtonsPress():
 	time.sleep(1)
 
 	#111 - Right Leg 1
+	print("[FCT TESTER] R1 Button")
 	GPIO.output(A0Mux, False)
 	GPIO.output(A1Mux, True)
 	GPIO.output(A0,True)
@@ -169,6 +172,7 @@ def rightToeButtonsPress():
 	time.sleep(1)
 
 	# 000 - Right Leg 2
+	print("[FCT TESTER] R2 Button")
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, True)
 	GPIO.output(A0, False)
@@ -184,7 +188,7 @@ def leftToeButtonsPress():
 	#001 - Left Leg 0
 
 	time.sleep(1)
-
+	print("[FCT TESTER] L0 Button")
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, True)
 	GPIO.output(A0, True)
@@ -195,6 +199,7 @@ def leftToeButtonsPress():
 	time.sleep(1)
 
 	#010 - Left Leg 1
+	print("[FCT TESTER] L1 Button")
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, True)
 	GPIO.output(A0, False)
@@ -205,6 +210,7 @@ def leftToeButtonsPress():
 	time.sleep(1)
 
 	#011 - Left Leg 2
+	print("[FCT TESTER] L2 Button")
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, True)
 	GPIO.output(A0, True)
@@ -435,7 +441,8 @@ def consoleCommand(commandString):
 # 	    [playTest, "\n*****Play Buttons Test*****\n"], \
 # 	    [recordTest, "\n*****Record Buttons Test*****\n"], \
 # 	    [playbackTest, "\n*****Playback Buttons Test*****\n"]]
-funkList = [[encoderTest, "\n*****Encoder Test*****\n"]]
+funkList = [[leftButtonsTest, "\n*****Left Buttons Test*****\n"], \
+	       [rightButtonsTest, "\n*****Right Buttons Test*****\n"]]
 
 
 class printThread(threading.Thread):
