@@ -64,14 +64,18 @@ def encoderTest():
 def leftButtonsTest():
 	consoleCommand("8")
 	leftToeButtonsPress() 
+	time.sleep(12)
 
 def rightButtonsTest():
 	consoleCommand("8")
 	rightToeButtonsPress()
+	time.sleep(12)
 
 def powerButtonTest():
 	consoleCommand("9")
 	powerButtonPress()
+	time.sleep(7)
+
 
 def sdCardTest():
 	consoleCommand("11")
@@ -148,9 +152,9 @@ def rightToeButtonsPress():
 	#110 - Right Leg 0
 	GPIO.output(A0Mux, False)
 	GPIO.output(A1Mux, True)
-	GPIO.output(A0,True)
+	GPIO.output(A0,False)
 	GPIO.output(A1,True)
-	GPIO.output(A2,False)
+	GPIO.output(A2,True)
 
 	time.sleep(1)
 
@@ -177,11 +181,14 @@ def rightToeButtonsPress():
 def leftToeButtonsPress():
 	GPIO.output(muxEnable, True)
 	#001 - Left Leg 0
+
+	time.sleep(1)
+
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, True)
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, False)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 
 	time.sleep(1)
@@ -199,9 +206,9 @@ def leftToeButtonsPress():
 	#011 - Left Leg 2
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, True)
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, True)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 	time.sleep(1)
 
@@ -235,9 +242,9 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#001 - Encoder 0, Bit 1
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, False)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 
 	time.sleep(1)
@@ -251,17 +258,17 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#011 - Encoder 0, Bit 3
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, True)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 	time.sleep(1)
 
 	print("Encoder #1")
 	#100 - Encoder 1, Bit 0
-	GPIO.output(A0,True)
+	GPIO.output(A0,False)
 	GPIO.output(A1,False)
-	GPIO.output(A2,False)
+	GPIO.output(A2,True)
 
 	time.sleep(1)
 
@@ -273,9 +280,9 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#110 - Encoder 1, Bit 2
-	GPIO.output(A0,True)
+	GPIO.output(A0,False)
 	GPIO.output(A1,True)
-	GPIO.output(A2,False)
+	GPIO.output(A2,True)
 
 	time.sleep(1)
 
@@ -297,9 +304,9 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#001 - Encoder 2, Bit 1
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, False)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 
 	time.sleep(1)
@@ -313,17 +320,17 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#011 - Encoder 2, Bit 3
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, True)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 	time.sleep(1)
 
 	print("Encoder #3")
 	#100 - Encoder 3, Bit 0
-	GPIO.output(A0,True)
+	GPIO.output(A0,False)
 	GPIO.output(A1,False)
-	GPIO.output(A2,False)
+	GPIO.output(A2,True)
 
 	time.sleep(1)
 
@@ -335,9 +342,9 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#110 - Encoder 3, Bit 2
-	GPIO.output(A0,True)
+	GPIO.output(A0,False)
 	GPIO.output(A1,True)
-	GPIO.output(A2,False)
+	GPIO.output(A2,True)
 
 	time.sleep(1)
 
@@ -361,9 +368,9 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#001 - Encoder 4, Bit 1
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, False)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 
 	time.sleep(1)
@@ -377,16 +384,16 @@ def encoderPinToggle():
 	time.sleep(1)
 
 	#011 - Encoder 4, Bit 3
-	GPIO.output(A0, False)
+	GPIO.output(A0, True)
 	GPIO.output(A1, True)
-	GPIO.output(A2, True)
+	GPIO.output(A2, False)
 
 	time.sleep(1)
 
 	#100 - Encoder 5, Bit 0
-	GPIO.output(A0,True)
+	GPIO.output(A0,False)
 	GPIO.output(A1,False)
-	GPIO.output(A2,False)
+	GPIO.output(A2,True)
 
 	time.sleep(1)
 
@@ -405,10 +412,10 @@ def consoleCommand(commandString):
 	print("Issued command string: \n" + commandString)
 
 
-funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, leftButtonTest, rightButtonTest, \
-			 powerButtonTest, sdCardTest, pingTest, chargeTest]
+# funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, leftButtonsTest, rightButtonsTest, \
+			 # powerButtonTest, sdCardTest, pingTest, chargeTest]
 
-# funkList = [ledTest, sdCardTest, pingTest, chargeTest]
+funkList = [leftButtonsTest]
 
 class printThread(threading.Thread):
 	def __init__(self, q):
