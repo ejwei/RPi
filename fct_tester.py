@@ -58,8 +58,9 @@ def motorTest():
 	time.sleep(3)
 
 def encoderTest():
-	consoleCommand("7")
+	consoleCommand("motor_spin")
 	encoderPinToggle()
+	exitMotorSpin()
 
 def leftButtonsTest():
 	consoleCommand("8")
@@ -223,6 +224,19 @@ def powerButtonPress():
 	GPIO.output(A0,True)
 	GPIO.output(A1,False)
 	GPIO.output(A2,False)
+
+	time.sleep(1)
+
+	GPIO.output(muxEnable, False)
+
+def exitMotorSpin():
+	GPIO.output(muxEnable, True)
+	#100 - Power Button
+	GPIO.output(A0Mux, True)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0, True)
+	GPIO.output(A1, False)
+	GPIO.output(A2, False)
 
 	time.sleep(1)
 
@@ -421,7 +435,7 @@ def consoleCommand(commandString):
 # 	    [playTest, "\n*****Play Buttons Test*****\n"], \
 # 	    [recordTest, "\n*****Record Buttons Test*****\n"], \
 # 	    [playbackTest, "\n*****Playback Buttons Test*****\n"]]
-funkList = [[leftButtonsTest, "\n*****Left Buttons Test*****\n"]]
+funkList = [[encoderTest, "\n*****Encoder Test*****\n"]]
 
 
 class printThread(threading.Thread):
