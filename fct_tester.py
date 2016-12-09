@@ -12,6 +12,7 @@ q = Queue.Queue(0)
 _sentinel = object()
 
 #set up GPIO using BCM numbering
+GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 
 # OE0 - H
@@ -58,23 +59,26 @@ def motorTest():
 
 def encoderTest():
 	consoleCommand("7")
-	demuxTest()
-	time.sleep(15)
+	encoderPinToggle()
 
-def buttonTest():
+def leftButtonsTest():
 	consoleCommand("8")
-	time.sleep(3)
+	leftToeButtonsPress() 
+
+def rightButtonsTest():
+	consoleCommand("8")
+	rightToeButtonsPress()
 
 def powerButtonTest():
 	consoleCommand("9")
-	time.sleep(2)
+	powerButtonPress()
 
 def sdCardTest():
 	consoleCommand("11")
 	time.sleep(1)
 
 def pingTest():
-	consoleCommand("net_connect HUCKABEE2_DEMO empath WPA2")
+	consoleCommand("net_connect HUCKABEE2 thebatman WPA2")
 	time.sleep(5)
 	consoleCommand("net_ping 10.1.10.79")
 	time.sleep(2)
@@ -85,9 +89,6 @@ def chargeTest():
 	consoleCommand("16")
 	time.sleep(2)
 	chargeOff()
-
-
-
 
 
 
@@ -141,17 +142,91 @@ def chargeOn():
 
 	print("Charge On!")
 
-def demuxTest():
+
+def rightToeButtonsPress():
+	GPIO.output(muxEnable, True)
+	#110 - Right Leg 0
+	GPIO.output(A0Mux, False)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0,True)
+	GPIO.output(A1,True)
+	GPIO.output(A2,False)
+
+	time.sleep(1)
+
+	#111 - Right Leg 1
+	GPIO.output(A0Mux, False)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0,True)
+	GPIO.output(A1,True)
+	GPIO.output(A2,True)
+	
+	time.sleep(1)
+
+	# 000 - Right Leg 2
+	GPIO.output(A0Mux, True)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0, False)
+	GPIO.output(A1, False)
+	GPIO.output(A2, False)
+
+	time.sleep(1)
+
 	GPIO.output(muxEnable, False)
 
-	thread2.start()
-	time.sleep(2)
-	
-	print("Enable #1")
+def leftToeButtonsPress():
+	GPIO.output(muxEnable, True)
+	#001 - Left Leg 0
+	GPIO.output(A0Mux, True)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0, False)
+	GPIO.output(A1, False)
+	GPIO.output(A2, True)
+
+
+	time.sleep(1)
+
+	#010 - Left Leg 1
+	GPIO.output(A0Mux, True)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0, False)
+	GPIO.output(A1, True)
+	GPIO.output(A2, False)
+
+
+	time.sleep(1)
+
+	#011 - Left Leg 2
+	GPIO.output(A0Mux, True)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0, False)
+	GPIO.output(A1, True)
+	GPIO.output(A2, True)
+
+	time.sleep(1)
+
+	GPIO.output(muxEnable, False)
+
+
+def powerButtonPress():
+	GPIO.output(muxEnable, True)
+	#100 - Power Button
+	GPIO.output(A0Mux, True)
+	GPIO.output(A1Mux, True)
+	GPIO.output(A0,True)
+	GPIO.output(A1,False)
+	GPIO.output(A2,False)
+
+	time.sleep(1)
+
+	GPIO.output(muxEnable, False)
+
+def encoderPinToggle():
+	print("Encoder #0")
 	GPIO.output(muxEnable, True)
 	GPIO.output(A0Mux, False)
 	GPIO.output(A1Mux, False)
-	
+
 	# 000 - Encoder 0, Bit 0
 	GPIO.output(A0, False)
 	GPIO.output(A1, False)
@@ -160,9 +235,9 @@ def demuxTest():
 	time.sleep(1)
 
 	#001 - Encoder 0, Bit 1
-	GPIO.output(A0, True)
+	GPIO.output(A0, False)
 	GPIO.output(A1, False)
-	GPIO.output(A2, False)
+	GPIO.output(A2, True)
 
 
 	time.sleep(1)
@@ -176,16 +251,17 @@ def demuxTest():
 	time.sleep(1)
 
 	#011 - Encoder 0, Bit 3
-	GPIO.output(A0, True)
+	GPIO.output(A0, False)
 	GPIO.output(A1, True)
-	GPIO.output(A2, False)
+	GPIO.output(A2, True)
 
 	time.sleep(1)
 
+	print("Encoder #1")
 	#100 - Encoder 1, Bit 0
-	GPIO.output(A0,False)
+	GPIO.output(A0,True)
 	GPIO.output(A1,False)
-	GPIO.output(A2,True)
+	GPIO.output(A2,False)
 
 	time.sleep(1)
 
@@ -197,9 +273,9 @@ def demuxTest():
 	time.sleep(1)
 
 	#110 - Encoder 1, Bit 2
-	GPIO.output(A0,False)
+	GPIO.output(A0,True)
 	GPIO.output(A1,True)
-	GPIO.output(A2,True)
+	GPIO.output(A2,False)
 
 	time.sleep(1)
 
@@ -210,8 +286,7 @@ def demuxTest():
 
 	time.sleep(2)
 	
-	print("Enable #2")
-	GPIO.output(muxEnable, True)
+	print("Encoder #2")
 	GPIO.output(A0Mux, True)
 	GPIO.output(A1Mux, False)
 	# 000 - Encoder 2, Bit 0
@@ -222,9 +297,9 @@ def demuxTest():
 	time.sleep(1)
 
 	#001 - Encoder 2, Bit 1
-	GPIO.output(A0, True)
+	GPIO.output(A0, False)
 	GPIO.output(A1, False)
-	GPIO.output(A2, False)
+	GPIO.output(A2, True)
 
 
 	time.sleep(1)
@@ -238,16 +313,17 @@ def demuxTest():
 	time.sleep(1)
 
 	#011 - Encoder 2, Bit 3
-	GPIO.output(A0, True)
+	GPIO.output(A0, False)
 	GPIO.output(A1, True)
-	GPIO.output(A2, False)
+	GPIO.output(A2, True)
 
 	time.sleep(1)
 
+	print("Encoder #3")
 	#100 - Encoder 3, Bit 0
-	GPIO.output(A0,False)
+	GPIO.output(A0,True)
 	GPIO.output(A1,False)
-	GPIO.output(A2,True)
+	GPIO.output(A2,False)
 
 	time.sleep(1)
 
@@ -259,9 +335,9 @@ def demuxTest():
 	time.sleep(1)
 
 	#110 - Encoder 3, Bit 2
-	GPIO.output(A0,False)
+	GPIO.output(A0,True)
 	GPIO.output(A1,True)
-	GPIO.output(A2,True)
+	GPIO.output(A2,False)
 
 	time.sleep(1)
 
@@ -271,7 +347,8 @@ def demuxTest():
 	GPIO.output(A2,True)
 
 	time.sleep(2)
-	print("Enable #3")
+
+	print("Encoder #4")
 	GPIO.output(muxEnable, True)
 	GPIO.output(A0Mux, False)
 	GPIO.output(A1Mux, True)
@@ -284,9 +361,9 @@ def demuxTest():
 	time.sleep(1)
 
 	#001 - Encoder 4, Bit 1
-	GPIO.output(A0, True)
+	GPIO.output(A0, False)
 	GPIO.output(A1, False)
-	GPIO.output(A2, False)
+	GPIO.output(A2, True)
 
 
 	time.sleep(1)
@@ -300,16 +377,16 @@ def demuxTest():
 	time.sleep(1)
 
 	#011 - Encoder 4, Bit 3
-	GPIO.output(A0, True)
+	GPIO.output(A0, False)
 	GPIO.output(A1, True)
-	GPIO.output(A2, False)
+	GPIO.output(A2, True)
 
 	time.sleep(1)
 
 	#100 - Encoder 5, Bit 0
-	GPIO.output(A0,False)
+	GPIO.output(A0,True)
 	GPIO.output(A1,False)
-	GPIO.output(A2,True)
+	GPIO.output(A2,False)
 
 	time.sleep(1)
 
@@ -320,87 +397,7 @@ def demuxTest():
 
 	time.sleep(1)
 
-	#110 - Right Leg 0
-	GPIO.output(A0,False)
-	GPIO.output(A1,True)
-	GPIO.output(A2,True)
-
-	time.sleep(1)
-
-	#111 - Right Leg 1
-	GPIO.output(A0,True)
-	GPIO.output(A1,True)
-	GPIO.output(A2,True)
-	time.sleep(2)
-
-	print("Enable #4")
-	GPIO.output(muxEnable, True)
-	GPIO.output(A0Mux, True)
-	GPIO.output(A1Mux, True)
-
-	# 000 - Right Leg 2
-	GPIO.output(A0, False)
-	GPIO.output(A1, False)
-	GPIO.output(A2, False)
-
-	time.sleep(1)
-
-	#001 - Left Leg 0
-	GPIO.output(A0, True)
-	GPIO.output(A1, False)
-	GPIO.output(A2, False)
-
-
-	time.sleep(1)
-
-	#010 - Left Leg 1
-	GPIO.output(A0, False)
-	GPIO.output(A1, True)
-	GPIO.output(A2, False)
-
-
-	time.sleep(1)
-
-	#011 - Left Leg 2
-	GPIO.output(A0, True)
-	GPIO.output(A1, True)
-	GPIO.output(A2, False)
-
-	time.sleep(1)
-
-	#100 - Power Button
-	GPIO.output(A0,False)
-	GPIO.output(A1,False)
-	GPIO.output(A2,True)
-
-	time.sleep(1)
-
-	#101 - Charger
-	GPIO.output(A0,True)
-	GPIO.output(A1,False)
-	GPIO.output(A2,True)
-
-	time.sleep(1)
-
-	#110
-	GPIO.output(A0,False)
-	GPIO.output(A1,True)
-	GPIO.output(A2,True)
-
-	time.sleep(1)
-
-	#111
-	GPIO.output(A0,True)
-	GPIO.output(A1,True)
-	GPIO.output(A2,True)
-	time.sleep(2)
-
 	GPIO.output(muxEnable, False)
-
-	print("Test Completed!")
-
-
-
 
 def consoleCommand(commandString):
 	port.write(commandString + "\r\n")
@@ -408,10 +405,10 @@ def consoleCommand(commandString):
 	print("Issued command string: \n" + commandString)
 
 
-# funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, buttonTest, buttonTest, \
-			 # powerButtonTest, sdCardTest, pingTest, chargeTest]
+funkList = [ledTest, playTest, recordTest, playbackTest, motorTest, encoderTest, leftButtonTest, rightButtonTest, \
+			 powerButtonTest, sdCardTest, pingTest, chargeTest]
 
-funkList = [ledTest, sdCardTest, pingTest, chargeTest]
+# funkList = [ledTest, sdCardTest, pingTest, chargeTest]
 
 class printThread(threading.Thread):
 	def __init__(self, q):
@@ -440,7 +437,6 @@ class testThread(threading.Thread):
 		threading.Thread.__init__ (self)
 
 	def run(self):
-		GPIO.cleanup()
 		muxSetup()
 
 		while(1):
