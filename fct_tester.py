@@ -433,7 +433,7 @@ funkList = [[ledTest, "\n*****LED Test*****\n"], \
 		[playTest, "\n*****Play Test*****\n"], \
 	    [recordTest, "\n*****Record Test*****\n"], \
 	    [playbackTest, "\n*****Playback Test*****\n"], \
-	    [motorTest, "\n*****Motor Test*****\n"]
+	    [motorTest, "\n*****Motor Test*****\n"], \
 	    [encoderTest, "\n*****Encoder Test*****\n"], \
 	    [leftButtonsTest, "\n*****Left Buttons Test*****\n"], \
 	    [rightButtonsTest, "\n*****Right Buttons Test*****\n"], \
