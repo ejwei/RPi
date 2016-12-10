@@ -39,7 +39,7 @@ numTests = 7
 
 def ledTest():
 	consoleCommand("led")
-	time.sleep(3)
+	time.sleep(8)
 
 def playTest():
 	consoleCommand("play")
@@ -55,7 +55,7 @@ def playbackTest():
 
 def motorTest():
 	consoleCommand("6")
-	time.sleep(3)
+	time.sleep(12)
 
 def encoderTest():
 	consoleCommand("motor_spin")
@@ -89,12 +89,9 @@ def pingTest():
 	time.sleep(2)
 
 def chargeTest():
-	chargeOn()
 	time.sleep(2)
 	consoleCommand("16")
 	time.sleep(2)
-	chargeOff()
-
 
 
 #Individual Tests
@@ -432,17 +429,21 @@ def consoleCommand(commandString):
 	print("Issued command string: \n" + commandString)
 
 
-# funkList = [[sdCardTest, "\n*****SD Card Test*****\n"], \
-# 	    [leftButtonsTest, "\n*****Left Buttons Test*****\n"], \
-# 	    [rightButtonsTest, "\n*****Right Buttons Test*****\n"], \
-# 	    [powerButtonTest, "\n*****Power Buttons Test*****\n"], \
-# 	    [ledTest, "\n*****LED Test*****\n"], \
-# 	    [pingTest, "\n*****Ping Test*****\n"], \
-# 	    [playTest, "\n*****Play Buttons Test*****\n"], \
-# 	    [recordTest, "\n*****Record Buttons Test*****\n"], \
-# 	    [playbackTest, "\n*****Playback Buttons Test*****\n"]]
-funkList = [[leftButtonsTest, "\n*****Left Buttons Test*****\n"], \
-	       [rightButtonsTest, "\n*****Right Buttons Test*****\n"]]
+funkList = [[ledTest, "\n*****LED Test*****\n"], \
+		[playTest, "\n*****Play Test*****\n"], \
+	    [recordTest, "\n*****Record Test*****\n"], \
+	    [playbackTest, "\n*****Playback Test*****\n"], \
+	    [motorTest, "\n*****Motor Test*****\n"]
+	    [encoderTest, "\n*****Encoder Test*****\n"], \
+	    [leftButtonsTest, "\n*****Left Buttons Test*****\n"], \
+	    [rightButtonsTest, "\n*****Right Buttons Test*****\n"], \
+	    [powerButtonTest, "\n*****Power Buttons Test*****\n"], \
+		[sdCardTest, "\n*****SD Card Test*****\n"], \
+	    [pingTest, "\n*****Ping Test*****\n"], \
+	    [chargeTest, "\n*****Charge Test*****\n"]]
+	    
+# funkList = [[leftButtonsTest, "\n*****Left Buttons Test*****\n"], \
+	       # [rightButtonsTest, "\n*****Right Buttons Test*****\n"]]
 
 
 class printThread(threading.Thread):
