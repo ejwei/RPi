@@ -18,38 +18,48 @@ A2 = 1
 extender = serial.Serial(portName, 19200, timeout=1)
 
 #These are the pins that we're using
-pinMask = "002f"
+enableThesePins = "002f"
 
 #A 0 in the bit position indicates an output
 ioDirMask = "0000"
 
 #initial state for all pins
-initialPinValues = "0000"
+allPinsOff = "0000"
 
 def configureGPIO():
-	extender.write("gpio iomask "+ pinMask  + "\r")
+	extender.write("gpio iomask "+ enableThesePins  + "\r")
 	extender.write("gpio iodir "+ ioDirMask  + "\r")
-	extender.write("gpio writeall "+ initialPinValues  + "\r")
+	extender.write("gpio writeall "+ allPinsOff  + "\r")
 
+def setGPIO(mask):
+	maskStr = format(mask, '04x')
+	extender.write("gpio writeall " + maskStr + "\r")
+
+	print "Set GPIO mask to " + maskStr
+
+def readAll():
+	extender.write("gpio readall\r")
+	response = extender.read(50)
+	print response
+
+def clearAllGPIO():
+	extender.write("gpio writeall "+ allPinsOff  + "\r")
 
 def powerButtonPress():
-	ft232h.output(muxEnable, GPIO.HIGH)
-	#100 - Power Button
-	ft232h.output(A0Mux, GPIO.HIGH)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0,GPIO.LOW)
-	ft232h.output(A1,GPIO.LOW)
-	ft232h.output(A2,GPIO.HIGH)
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 1 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 1 << A2
+	pinMask |= 0 << A1
+	pinMask |= 0 << A0
 
-	time.sleep(1)
+	setGPIO(pinMask)
 
-	ft232h.output(muxEnable, GPIO.LOW)
-	ft232h.output(A0Mux, GPIO.LOW)
-	ft232h.output(A1Mux, GPIO.LOW)
-	ft232h.output(A0,GPIO.LOW)
-	ft232h.output(A1,GPIO.LOW)
-	ft232h.output(A2,GPIO.LOW)
+	time.sleep(30)
 
+	# readAll()
+	# clearAllGPIO()
 
 
 def toggleEncoder0():
@@ -248,57 +258,6 @@ def toggleEncoder5():
 	ft232h.output(muxEnable, GPIO.LOW)
 
 
-# Temporarily disable the built-in FTDI serial driver on Mac & Linux platforms.
-FT232H.use_FT232H()
-
-# Create an FT232H object that grabs the first available FT232H device found.
-ft232h = FT232H.FT232H()
-print 'Press Ctrl-C to quit.'
-
-muxSetup()
-# toggleEncoder0()
-# toggleEncoder1()
-toggleEncoder2()
-toggleEncoder3()
-# toggleEncoder4()
-# toggleEncoder5()
-
-
-
-
-# Import standard Python time library.
-import time
-
-# Import GPIO and FT232H modules.
-import Adafruit_GPIO as GPIO
-import Adafruit_GPIO.FT232H as FT232H
-
-
-
-#Pin Definitions
-A0Mux = 8
-A1Mux = 5
-muxEnable = 3
-
-A0 = 9
-A1 = 10
-A2 = 11
-
-LED = 4
-
-
-
-
-def muxSetup():
-	ft232h.setup(A0Mux, GPIO.OUT)
-	ft232h.setup(A1Mux, GPIO.OUT)
-	ft232h.setup(muxEnable, GPIO.OUT)
-
-	ft232h.setup(A0, GPIO.OUT)
-	ft232h.setup(A1, GPIO.OUT)
-	ft232h.setup(A2, GPIO.OUT)
-
-
 def rightToeButtonsPress():
 	ft232h.output(muxEnable, GPIO.HIGH)
 	#110 - Right Leg 0
@@ -374,25 +333,6 @@ def leftToeButtonsPress():
 	ft232h.output(muxEnable, GPIO.LOW)
 
 
-def powerButtonPress():
-	ft232h.output(muxEnable, GPIO.HIGH)
-	#100 - Power Button
-	ft232h.output(A0Mux, GPIO.HIGH)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0,GPIO.LOW)
-	ft232h.output(A1,GPIO.LOW)
-	ft232h.output(A2,GPIO.HIGH)
-
-	time.sleep(1)
-
-	ft232h.output(muxEnable, GPIO.LOW)
-	ft232h.output(A0Mux, GPIO.LOW)
-	ft232h.output(A1Mux, GPIO.LOW)
-	ft232h.output(A0,GPIO.LOW)
-	ft232h.output(A1,GPIO.LOW)
-	ft232h.output(A2,GPIO.LOW)
-
-
 def powerMosfetOn():
 	ft232h.output(muxEnable, GPIO.LOW)
 
@@ -416,38 +356,5 @@ def powerMosfetOff():
 	ft232h.output(muxEnable, GPIO.LOW)
 
 
-# Temporarily disable the built-in FTDI serial driver on Mac & Linux platforms.
-FT232H.use_FT232H()
-
-# Create an FT232H object that grabs the first available FT232H device found.
-ft232h = FT232H.FT232H()
-
-# Configure digital inputs and outputs using the setup function.
-# Note that pin numbers 0 to 15 map to pins D0 to D7 then C0 to C7 on the board.
-# ft232h.setup(7, GPIO.IN)   # Make pin D7 a digital input.
-ft232h.setup(LED, GPIO.OUT)  # Make pin C0 a digital output.
-
-# Loop turning the LED on and off and reading the input state.
-print 'Press Ctrl-C to quit.'
-# while True:
-# Set pin C0 to a high level so the LED turns on.
-ft232h.output(LED, GPIO.HIGH)
-# Sleep for 1 second.
-time.sleep(1)
-# Set pin C0 to a low level so the LED turns off.
-ft232h.output(LED, GPIO.LOW)
-# Sleep for 1 second.
-time.sleep(1)
-# # Read the input on pin D7 and print out if it's high or low.
-# level = ft232h.input(7)
-# if level == GPIO.LOW:
-# 	print 'Pin D7 is LOW!'
-# else:
-# 	print 'Pin D7 is HIGH!'
-muxSetup()
-# powerButtonPress()
-# leftToeButtonsPress()
-# rightToeButtonsPress()
-powerMosfetOn()
-time.sleep(15)
-powerMosfetOff()
+configureGPIO()
+powerButtonPress()
