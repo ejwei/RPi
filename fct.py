@@ -18,7 +18,7 @@ A2 = 1
 extender = serial.Serial(portName, 19200, timeout=1)
 
 #These are the pins that we're using
-enableThesePins = "002f"
+enableThesePins = "003f"
 
 #A 0 in the bit position indicates an output
 ioDirMask = "0000"
@@ -50,17 +50,174 @@ def powerButtonPress():
 	pinMask |= 1 << muxEnable
 	pinMask |= 1 << A0Mux
 	pinMask |= 1 << A1Mux
-	pinMask |= 1 << A2
-	pinMask |= 0 << A1
 	pinMask |= 0 << A0
+	pinMask |= 0 << A1
+	pinMask |= 1 << A2
 
 	setGPIO(pinMask)
 
-	time.sleep(30)
+	time.sleep(2)
 
 	# readAll()
-	# clearAllGPIO()
+	clearAllGPIO()
 
+
+def rightToeButtonsPress():
+	#110 - Right Leg 0
+	time.sleep(1)
+
+	print("[FCT TESTER] R0 Button")
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 0 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 0 << A0
+	pinMask |= 1 << A1
+	pinMask |= 1 << A2
+	setGPIO(pinMask)
+
+	# ft232h.output(A0Mux, GPIO.LOW)
+	# ft232h.output(A1Mux, GPIO.HIGH)
+	# ft232h.output(A0,GPIO.LOW)
+	# ft232h.output(A1,GPIO.HIGH)
+	# ft232h.output(A2,GPIO.HIGH)
+
+	time.sleep(1)
+
+	#111 - Right Leg 1
+	print("[FCT TESTER] R1 Button")
+	# ft232h.output(A0Mux, GPIO.LOW)
+	# ft232h.output(A1Mux, GPIO.HIGH)
+	# ft232h.output(A0,GPIO.HIGH)
+	# ft232h.output(A1,GPIO.HIGH)
+	# ft232h.output(A2,GPIO.HIGH)
+
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 0 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 1 << A0
+	pinMask |= 1 << A1
+	pinMask |= 1 << A2
+	setGPIO(pinMask)
+	
+	time.sleep(1)
+
+	# 000 - Right Leg 2
+	print("[FCT TESTER] R2 Button")
+	# ft232h.output(A0Mux, GPIO.HIGH)
+	# ft232h.output(A1Mux, GPIO.HIGH)
+	# ft232h.output(A0, GPIO.LOW)
+	# ft232h.output(A1, GPIO.LOW)
+	# ft232h.output(A2, GPIO.LOW)
+
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 1 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 0 << A0
+	pinMask |= 0 << A1
+	pinMask |= 0 << A2
+	setGPIO(pinMask)
+
+	time.sleep(1)
+
+	clearAllGPIO()
+
+def leftToeButtonsPress():
+	#001 - Left Leg 0
+
+	time.sleep(1)
+	print("[FCT TESTER] L0 Button")
+	# ft232h.output(A0Mux, GPIO.HIGH)
+	# ft232h.output(A1Mux, GPIO.HIGH)
+	# ft232h.output(A0, GPIO.HIGH)
+	# ft232h.output(A1, GPIO.LOW)
+	# ft232h.output(A2, GPIO.LOW)
+
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 1 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 1 << A0
+	pinMask |= 0 << A1
+	pinMask |= 0 << A2
+	setGPIO(pinMask)
+
+
+	time.sleep(1)
+
+	#010 - Left Leg 1
+	print("[FCT TESTER] L1 Button")
+	# ft232h.output(A0Mux, GPIO.HIGH)
+	# ft232h.output(A1Mux, GPIO.HIGH)
+	# ft232h.output(A0, GPIO.LOW)
+	# ft232h.output(A1, GPIO.HIGH)
+	# ft232h.output(A2, GPIO.LOW)
+
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 1 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 0 << A0
+	pinMask |= 1 << A1
+	pinMask |= 0 << A2
+	setGPIO(pinMask)
+
+	time.sleep(1)
+
+	#011 - Left Leg 2
+	print("[FCT TESTER] L2 Button")
+	# ft232h.output(A0Mux, GPIO.HIGH)
+	# ft232h.output(A1Mux, GPIO.HIGH)
+	# ft232h.output(A0, GPIO.HIGH)
+	# ft232h.output(A1, GPIO.HIGH)
+	# ft232h.output(A2, GPIO.LOW)
+
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 1 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 1 << A0
+	pinMask |= 1 << A1
+	pinMask |= 0 << A2
+	setGPIO(pinMask)
+
+	time.sleep(1)
+
+	clearAllGPIO()
+
+def powerMosfetOn():
+	# ft232h.output(muxEnable, GPIO.LOW)
+
+	# time.sleep(2)
+
+	# ft232h.output(muxEnable, GPIO.HIGH)
+	# ft232h.output(A0Mux, GPIO.HIGH)
+	# ft232h.output(A1Mux, GPIO.HIGH)
+
+	# time.sleep(1)
+
+	# #101 (Y5)
+	# ft232h.output(A0,GPIO.HIGH)
+	# ft232h.output(A1,GPIO.LOW)
+	# ft232h.output(A2,GPIO.HIGH)
+
+	pinMask = 0
+	pinMask |= 1 << muxEnable
+	pinMask |= 1 << A0Mux
+	pinMask |= 1 << A1Mux
+	pinMask |= 1 << A0
+	pinMask |= 0 << A1
+	pinMask |= 1 << A2
+	setGPIO(pinMask)
+
+
+	print("Charge On!")
+
+def powerMosfetOff():
+	print("Charge Off!")
+	clearAllGPIO()
 
 def toggleEncoder0():
 	print("Encoder #0")
@@ -257,104 +414,11 @@ def toggleEncoder5():
 
 	ft232h.output(muxEnable, GPIO.LOW)
 
-
-def rightToeButtonsPress():
-	ft232h.output(muxEnable, GPIO.HIGH)
-	#110 - Right Leg 0
-	time.sleep(1)
-
-	print("[FCT TESTER] R0 Button")
-	ft232h.output(A0Mux, GPIO.LOW)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0,GPIO.LOW)
-	ft232h.output(A1,GPIO.HIGH)
-	ft232h.output(A2,GPIO.HIGH)
-
-	time.sleep(1)
-
-	#111 - Right Leg 1
-	print("[FCT TESTER] R1 Button")
-	ft232h.output(A0Mux, GPIO.LOW)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0,GPIO.HIGH)
-	ft232h.output(A1,GPIO.HIGH)
-	ft232h.output(A2,GPIO.HIGH)
-	
-	time.sleep(1)
-
-	# 000 - Right Leg 2
-	print("[FCT TESTER] R2 Button")
-	ft232h.output(A0Mux, GPIO.HIGH)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0, GPIO.LOW)
-	ft232h.output(A1, GPIO.LOW)
-	ft232h.output(A2, GPIO.LOW)
-
-	time.sleep(1)
-
-	ft232h.output(muxEnable, GPIO.LOW)
-
-def leftToeButtonsPress():
-	ft232h.output(muxEnable, GPIO.HIGH)
-	#001 - Left Leg 0
-
-	time.sleep(1)
-	print("[FCT TESTER] L0 Button")
-	ft232h.output(A0Mux, GPIO.HIGH)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0, GPIO.HIGH)
-	ft232h.output(A1, GPIO.LOW)
-	ft232h.output(A2, GPIO.LOW)
-
-
-	time.sleep(1)
-
-	#010 - Left Leg 1
-	print("[FCT TESTER] L1 Button")
-	ft232h.output(A0Mux, GPIO.HIGH)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0, GPIO.LOW)
-	ft232h.output(A1, GPIO.HIGH)
-	ft232h.output(A2, GPIO.LOW)
-
-
-	time.sleep(1)
-
-	#011 - Left Leg 2
-	print("[FCT TESTER] L2 Button")
-	ft232h.output(A0Mux, GPIO.HIGH)
-	ft232h.output(A1Mux, GPIO.HIGH)
-	ft232h.output(A0, GPIO.HIGH)
-	ft232h.output(A1, GPIO.HIGH)
-	ft232h.output(A2, GPIO.LOW)
-
-	time.sleep(1)
-
-	ft232h.output(muxEnable, GPIO.LOW)
-
-
-def powerMosfetOn():
-	ft232h.output(muxEnable, GPIO.LOW)
-
-	time.sleep(2)
-
-	ft232h.output(muxEnable, GPIO.HIGH)
-	ft232h.output(A0Mux, GPIO.HIGH)
-	ft232h.output(A1Mux, GPIO.HIGH)
-
-	time.sleep(1)
-
-	#101 (Y5)
-	ft232h.output(A0,GPIO.HIGH)
-	ft232h.output(A1,GPIO.LOW)
-	ft232h.output(A2,GPIO.HIGH)
-
-	print("Charge On!")
-
-def powerMosfetOff():
-	print("Charge Off!")
-	ft232h.output(muxEnable, GPIO.LOW)
-
-
 configureGPIO()
-powerButtonPress()
+# powerButtonPress()
+
+# leftToeButtonsPress()
+# rightToeButtonsPress()
+powerMosfetOn()
+time.sleep(20)
+powerMosfetOff()
