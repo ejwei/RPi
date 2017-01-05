@@ -125,6 +125,27 @@ def powerButtonPress():
 	ft232h.output(A2,GPIO.LOW)
 
 
+def powerMosfetOn():
+	ft232h.output(muxEnable, GPIO.LOW)
+
+	time.sleep(2)
+
+	ft232h.output(muxEnable, GPIO.HIGH)
+	ft232h.output(A0Mux, GPIO.HIGH)
+	ft232h.output(A1Mux, GPIO.HIGH)
+
+	time.sleep(1)
+
+	#101 (Y5)
+	ft232h.output(A0,GPIO.HIGH)
+	ft232h.output(A1,GPIO.LOW)
+	ft232h.output(A2,GPIO.HIGH)
+
+	print("Charge On!")
+
+def powerMosfetOff():
+	print("Charge Off!")
+	ft232h.output(muxEnable, GPIO.LOW)
 
 
 # Temporarily disable the built-in FTDI serial driver on Mac & Linux platforms.
@@ -156,6 +177,9 @@ time.sleep(1)
 # else:
 # 	print 'Pin D7 is HIGH!'
 muxSetup()
-powerButtonPress()
+# powerButtonPress()
 # leftToeButtonsPress()
 # rightToeButtonsPress()
+powerMosfetOn()
+time.sleep(15)
+powerMosfetOff()
